@@ -17,18 +17,18 @@ export const Login = async (values : z.infer<typeof LoginSchema>) => {
     }
     const { email,password } = validatedInputs.data;
     
-    const existingUser = await getUserByEmail(email);
-    if(!existingUser || !existingUser.email || !existingUser.password){
-        return {
-            error: "Email doesn't exist!"
-        }
-    }
-    if(!existingUser.emailVerified){
-        const verificationToken = await generateVerificationToken(existingUser.email);
-        return {
-            success: "confirmation mail is sent!"
-        }
-    }
+    // const existingUser = await getUserByEmail(email);
+    // if(!existingUser || !existingUser.email || !existingUser.password){
+    //     return {
+    //         error: "Email doesn't exist!"
+    //     }
+    // }
+    // if(!existingUser.emailVerified){
+    //     const verificationToken = await generateVerificationToken(existingUser.email);
+    //     return {
+    //         success: "confirmation mail is sent!"
+    //     }
+    // }
     try{
      await signIn("credentials",{
         email,
