@@ -1,20 +1,19 @@
-import { auth, signOut } from "@/auth";
-import { Button } from "@/components/ui/button";
+import { auth, signOut } from "@/auth"
 
-const Settings = async () => {
-
+const SettingsPage = async () => {
     const session = await auth();
-    return (
-        <div>
-            {JSON.stringify(session)}
-            <form action = {async () => {
-                "use server"
-                await signOut();
-            }}>
-                <Button type="submit">Signout</Button>
-            </form>
-        </div>
-    )
+    console.log("code is in settings");
+    return <div>
+        {JSON.stringify(session)}
+        <form action = {async () => {
+            "use server";
+
+            await signOut({redirectTo: "/auth/login"});
+            console.log("Server action");
+        }}>
+            <button type = "submit" className="bg-black text-white"  >Sign out</button>
+        </form>
+    </div>
 }
 
-export default Settings;
+export default SettingsPage;
